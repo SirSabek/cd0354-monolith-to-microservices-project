@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-feed
+  labels:
+    service: udagram-feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: udagram-feed
+  template:
+    metadata:
+      labels:
+        service: udagram-feed
+    spec:
+      containers:
+      - name: udagram-feed
+        image: sirsabek/udagram-api-feed
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "2048Mi"
+            cpu: "500m" 
+        envFrom:
+          - configMapRef:
+              name: env-configmap
+          - secretRef:
+              name: env-secret
+          - secretRef:
+              name: aws-secret
+      restartPolicy: Always
