@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-feed
+  labels:
+    service: backend-feed
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: backend-feed
+  template:
+    metadata:
+      labels:
+        service: backend-feed
+    spec:
+      containers:
+      - name: backend-feed
+        image: sirsabek/udagram-api-feed
+        resources:
+          requests:
+            cpu: "200m"
+          limits:
+            cpu: "500m" 
+        envFrom:
+          - configMapRef:
+              name: env-config
+          - secretRef:
+              name: env-secret
+          - secretRef:
+              name: aws-secret
+      restartPolicy: Always

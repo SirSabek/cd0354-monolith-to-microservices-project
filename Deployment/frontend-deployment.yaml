@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        api: external        
+    spec:
+      containers:
+      - image: sirsabek/udagram-frontend:v6
+        name: frontend
+        imagePullPolicy: Always          
+        ports:
+        - containerPort: 80
+        resources:
+          requests:    
+            cpu: "200m"
+          limits:
+            cpu: "500m"                
+      restartPolicy: Always
