@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 data:
-  AWS_BUCKET: sirsabek-bucket
+  AWS_BUCKET: sirsabek-bucket2
   AWS_PROFILE: default
   AWS_REGION: us-east-2
   JWT_SECRET: hello
   POSTGRES_DB: postgres
   POSTGRES_HOST: cdr.csgmb2lew2a0.us-east-2.rds.amazonaws.com
-  URL: http://localhost:8100  
+  URL: http://a895b11591b9a4d7097aeff49ef79094-440121568.us-east-2.elb.amazonaws.com:8100  
 metadata:
   name: env-config

@@ -99,11 +99,11 @@ router.post('/', async (req: Request, res: Response) => {
 
   const generatedHash = await generatePassword(plainTextPassword);
 
-  const newUser = await new User({
+  const newUser = await User.build({
     email: email,
     passwordHash: generatedHash,
   });
-
+  console.log(newUser)
   const savedUser = await newUser.save();
 
 
